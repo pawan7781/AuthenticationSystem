@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}"
+	  >
+<head>
+<meta charset="ISO-8859-1">
+<title>Project</title>
+	<style>
+		.center-message {
+			color: green;
+			text-align: center;
+			font-weight: bold;
+		}
+	</style>
+
+</head>
+<body>
+	<section>
+		<div class="container p-3">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="card">
+						<div class="card-header text-center fs-4">Register Page</div>
+
+<!--						<div th:replace="message::messagebox"></div>-->
+<!--						<th:block th:if="${session.msg}">-->
+<!--							<p class="text-center text-success fs-4">[[${session.msg}]]</p>-->
+<!--							<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>-->
+
+<!--						</th:block>-->
+<!--						<div th:if="${successMessage}" id="successMessage" class="center-message" >-->
+<!--							<p  th:text="${successMessage}"></p>-->
+<!--						</div>-->
+
+						<div class="card-body">
+							<form th:action="@{/register}" method="post" th:object="${userForm}">
+								<div class="mb-3">
+									<label>Enter Full Name</label> <input type="text" name="name"
+										class="form-control" th:field="*{name}" >
+
+								</div>
+								<div class="mb-3">
+									<span class="err" style="color: red" th:errors="*{name}"></span>
+								</div>
+								<div class="mb-3">
+									<label>Enter Email</label> <input type="text" name="email"
+										class="form-control" th:field="*{email}">
+								</div>
+								<div class="mb-3">
+									<span class="err" style="color: red" th:errors="*{email}"></span>
+								</div>
+
+								<div class="mb-3">
+									<label>Enter Mobile Number</label> <input type="number"
+										name="mobileNo"  class="form-control" th:field="*{mobileNo}">
+								</div>
+								<div class="mb-3">
+									<span class="err" style="color: red" th:errors="*{mobileNo}"></span>
+								</div>
+
+
+								<div class="mb-3">
+									<label>Enter Password</label> <input type="text"
+										name="password" class="form-control" th:field="*{password}">
+								</div>
+								<div class="mb-3">
+									<span class="err" style="color: red" th:errors="*{password}"></span>
+								</div>
+
+								<button type="submit" class="btn btn-primary col-md-12">Register</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+	</section>
+	<script>
+		var successMessage = document.getElementById("successMessage");
+
+		if (successMessage) {
+			setTimeout(function() {
+				successMessage.style.display = 'none';
+			}, 10000); // 10 seconds
+		}
+	</script>
+</body>
+</html>
